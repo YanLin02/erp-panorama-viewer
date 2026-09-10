@@ -1,0 +1,74 @@
+{
+  "name": "erp-panorama-viewer",
+  "displayName": "ERP Panorama Viewer",
+  "description": "A lightweight 360° equirectangular panorama viewer for PNG/JPG/WebP images in VS Code, with synchronized multi-image comparison.",
+  "version": "0.1.2",
+  "publisher": "local-research",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Visualization"
+  ],
+  "keywords": [
+    "panorama",
+    "equirectangular",
+    "ERP",
+    "360",
+    "computer vision",
+    "segmentation"
+  ],
+  "main": "./src/extension.js",
+  "extensionKind": [
+    "ui",
+    "workspace"
+  ],
+  "activationEvents": [
+    "onCommand:erpPanorama.open",
+    "onCommand:erpPanorama.openMany",
+    "onCommand:erpPanorama.openSelectedComparison"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "erpPanorama.open",
+        "title": "ERP Panorama: Open as 360° Viewer"
+      },
+      {
+        "command": "erpPanorama.openMany",
+        "title": "ERP Panorama: Open Images for Comparison"
+      },
+      {
+        "command": "erpPanorama.openSelectedComparison",
+        "title": "ERP Panorama: Open Selected as ERP Comparison"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "erpPanorama.open",
+          "when": "resourceExtname =~ /\\.(png|jpe?g|webp)$/i",
+          "group": "navigation@98"
+        },
+        {
+          "command": "erpPanorama.openSelectedComparison",
+          "when": "resourceExtname =~ /\\.(png|jpe?g|webp)$/i",
+          "group": "navigation@99"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "check": "node --check src/extension.js && node --check media/viewer.js",
+    "package:local": "python3 scripts/package_vsix.py"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YanLin02/erp-panorama-viewer.git"
+  },
+  "homepage": "https://github.com/YanLin02/erp-panorama-viewer#readme",
+  "bugs": {
+    "url": "https://github.com/YanLin02/erp-panorama-viewer/issues"
+  }
+}
